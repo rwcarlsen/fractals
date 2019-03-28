@@ -45,12 +45,16 @@ func main() {
 		defer pprof.StopCPUProfile()
 	}
 
-	pointsize := 0.3
+	pointsize := 0.5
 	var height, width vg.Length = 700, 700
-	n := 1000000
+	n := 500000
 
+	//pstem, stem := .01, makeTransform(0, 0, 0, .16, 0, 0)
+	//pleaflets, leaflets := .85, makeTransform(.85, .04, -.04, .85, 0, 1.6)
+	//pleftside, leftside := .07, makeTransform(.2, -.26, .23, .22, 0, 1.6)
+	//prightside, rightside := .07, makeTransform(-.15, .28, .26, .24, 0, .44)
 	pstem, stem := .01, makeTransform(0, 0, 0, .16, 0, 0)
-	pleaflets, leaflets := .85, makeTransform(.85, .04, -.04, .85, 0, 1.6)
+	pleaflets, leaflets := .85, makeTransform(.72, .04, -.04, .64, 0, 1.2)
 	pleftside, leftside := .07, makeTransform(.2, -.26, .23, .22, 0, 1.6)
 	prightside, rightside := .07, makeTransform(-.15, .28, .26, .24, 0, .44)
 
@@ -89,13 +93,8 @@ func main() {
 	p.Add(scat)
 
 	p.HideAxes()
-	err = p.Save(width, height, "leaf.svg")
+	err = p.Save(width, height, flag.Arg(0))
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = p.Save(width, height, "leaf.png")
-	if err != nil {
-		log.Fatal(err)
-	}
-
 }
